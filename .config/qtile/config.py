@@ -99,6 +99,7 @@ keys = [
     #     desc="Toggle between split and unsplit sides of stack",
     # ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
+    Key([mod], "t", lazy.spawn(terminal + " -e htop"), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
@@ -108,8 +109,8 @@ keys = [
     Key([mod], "d", lazy.run_extension(extension.DmenuRun(
         dmenu_prompt=">",
         dmenu_font="Fira Code",
-        #background="#15181a",
-        #foreground="#00ff00",
+        background="#000000",
+        foreground="#ffffff",
         #selected_background="#079822",
         #selected_foreground="#fff",
         #dmenu_height=25,
@@ -128,13 +129,21 @@ keys = [
     # Key("XF86AudioLowerVolume", lazy.spawn("pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%")),
     # Key("XF86AudioMute", lazy.spawn("amixer -D pulse set Master 1+ toggle")),
 ]
+# groups = [
+#         Group("", layout="Max"),
+#         Group("", spawn="firefox", layout="Max"),          
+#         Group("", spawn="kitty", layout="MonadTall"),
+#         Group("", layout="MonadTall"),
+#         Group("", layout="MonadTall"),
+#         Group("", layout="MonadTall"),
+#         ]
 groups = [
-        Group("", layout="MonadTall"),
-        Group("", spawn="google-chrome-stable", layout="Max"),          
-        Group("", spawn="kitty", layout="MonadTall"),
-        Group("", layout="MonadTall"),
-        Group("", layout="MonadTall"),
-        Group("", layout="MonadTall"),
+        Group("dev", layout="Max"),
+        Group("www", spawn="firefox", layout="Max"),          
+        Group("tty", spawn="kitty", layout="MonadTall"),
+        Group("dox", layout="MonadTall"),
+        Group("vid", layout="MonadTall"),
+        Group("slack", layout="MonadTall"),
         ]
 from libqtile.dgroups import simple_key_binder
 dgroups_key_binder = simple_key_binder(mod)
@@ -189,7 +198,7 @@ layouts = [
 
 
 widget_defaults = dict(
-    font="Fira Code",
+    font="Hack Nerd Font",
     fontsize=13,
     padding=0,
 )
@@ -238,7 +247,7 @@ screens = [
             ],
             23,
             opacity=1,
-            background="000000"
+            background="000000",
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
@@ -274,6 +283,7 @@ floating_layout = layout.Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
+        Match(wm_class="pavucontrol"),
     ]
 )
 auto_fullscreen = True
