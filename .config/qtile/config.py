@@ -116,7 +116,7 @@ keys = [
         #dmenu_height=25,
         ))),
     # Apps:
-    Key([mod], "w", lazy.spawn("google-chrome-stable")),
+    Key([mod], "w", lazy.spawn("firefox")),
     Key([mod, "shift"], "Return", lazy.spawn("kitty -e ranger")),
     Key([mod, "shift"], "d", lazy.function(hide_show_bar)),
     Key([mod], "u", lazy.spawn("pavucontrol")),
@@ -125,9 +125,9 @@ keys = [
     Key([mod], "c", lazy.spawn("code")),
     Key([mod], "b", lazy.spawn("blueberry")),
     Key([mod], "x", lazy.spawn("betterlockscreen -l")),
-    # Key("XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%")),
-    # Key("XF86AudioLowerVolume", lazy.spawn("pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%")),
-    # Key("XF86AudioMute", lazy.spawn("amixer -D pulse set Master 1+ toggle")),
+    #Key("XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume 0 +5%")),
+    #Key("XF86AudioLowerVolume", lazy.spawn("amixer -D pulse sset Master 5%-")),
+    #Key("XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle")),
 ]
 # groups = [
 #         Group("", layout="Max"),
@@ -138,9 +138,9 @@ keys = [
 #         Group("", layout="MonadTall"),
 #         ]
 groups = [
-        Group("dev", layout="Max"),
+        Group("code", layout="Max"),
         Group("www", spawn="firefox", layout="Max"),          
-        Group("tty", spawn="kitty", layout="MonadTall"),
+        Group("sys", spawn="kitty", layout="MonadTall"),
         Group("dox", layout="MonadTall"),
         Group("vid", layout="MonadTall"),
         Group("slack", layout="MonadTall"),
@@ -174,15 +174,15 @@ dgroups_key_binder = simple_key_binder(mod)
 #     )
 layout_theme = {
     "border_width": 2,
-    "margin": 5,
-    "border_focus": "215578",
-    "border_normal": "1D2330",
+    "margin": 0,
+    "border_focus": "fb4934",
+    #"border_normal": "1D2330",
 }
 
 layouts = [
     # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
     layout.MonadTall(**layout_theme),
-    layout.Max(**layout_theme),
+    layout.Max(),
     # layout.Floating(**layout_theme),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -208,7 +208,7 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(highlight_method="text", rounded="True"),
+                widget.GroupBox(highlight_method="text"),
                 # widget.TextBox(text="|"),
                 widget.TextBox(text=" "),
                 widget.Prompt(),
@@ -240,14 +240,14 @@ screens = [
                 # widget.Sep(linewidth=1, padding=10),
                 widget.Systray(icon_size=20, padding=1),
                 # widget.BatteryIcon(theme_path="/usr/share/icons/breeze-dark/status/24", update_interval=1),
-                widget.Battery(format="{percent:2.0%}", update_interval=60),
+                # widget.Battery(format="{percent:2.0%}", update_interval=60),
                 widget.Sep(linewidth=1, padding=10),
-                widget.Clock(format="%d-%b %H:%M "),
+                widget.Clock(format="%H:%M "),
                 # widget.QuickExit(),
             ],
             23,
-            opacity=1,
-            background="000000",
+            opacity=0.9,
+            background="#000000",
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
