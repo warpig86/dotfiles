@@ -21,10 +21,11 @@ promptinit
 # End of lines added by compinstall
 
 alias ls="lsd"
+alias xscreensaver="betterlockscreen -l"
 alias vi="nvim"
 alias vim="nvim"
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
+alias rip="~/youtube-dl/youtube-dl"
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
