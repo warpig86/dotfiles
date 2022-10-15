@@ -99,7 +99,7 @@ keys = [
     #     desc="Toggle between split and unsplit sides of stack",
     # ),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod], "t", lazy.spawn(terminal + " -e htop"), desc="Launch terminal"),
+    Key([mod], "t", lazy.spawn(terminal + " -e gtop"), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
@@ -125,6 +125,7 @@ keys = [
     Key([mod], "c", lazy.spawn("code")),
     Key([mod], "b", lazy.spawn("blueberry")),
     Key([mod], "x", lazy.spawn("betterlockscreen -l")),
+    #Key([mod, "shift"], "r", lazy.spawn("killall volumeicon ; volumeicon"),
     #Key("XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume 0 +5%")),
     #Key("XF86AudioLowerVolume", lazy.spawn("amixer -D pulse sset Master 5%-")),
     #Key("XF86AudioMute", lazy.spawn("amixer -D pulse sset Master toggle")),
@@ -173,8 +174,8 @@ dgroups_key_binder = simple_key_binder(mod)
 #         ]
 #     )
 layout_theme = {
-    "border_width": 2,
-    "margin": 0,
+    "border_width": 1,
+    #"margin": 0,
     "border_focus": "fb4934",
     #"border_normal": "1D2330",
 }
@@ -210,7 +211,8 @@ screens = [
             [
                 widget.GroupBox(highlight_method="text"),
                 # widget.TextBox(text="|"),
-                widget.TextBox(text=" "),
+                #widget.TextBox(text=" "),
+                widget.Sep(linewidth=1, padding=10),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.Chord(
@@ -246,7 +248,7 @@ screens = [
                 # widget.QuickExit(),
             ],
             23,
-            opacity=0.9,
+            opacity=0.90,
             background="#000000",
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
